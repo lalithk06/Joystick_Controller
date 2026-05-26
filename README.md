@@ -1,7 +1,8 @@
 # 🎮 Wireless Joystick Controller System
 
-A custom-built wireless joystick controller designed for robotics, automation, and embedded systems experimentation.  
-This project combines analog joystick control, motion sensing, wireless communication, and custom PCB design into a modular handheld controller architecture.
+A custom-built wireless joystick controller designed for robotics, automation, and embedded systems experimentation.
+
+This project combines joystick-based control, motion sensing, wireless communication, and custom PCB design into a modular handheld controller architecture.
 
 ---
 
@@ -15,83 +16,74 @@ This project focuses on developing a multi-input wireless controller capable of 
 - Automation platforms
 - Custom control interfaces
 
-The controller architecture is being designed to support:
+The controller architecture is designed to support:
 
 - Multiple analog joystick inputs
-- IMU-based motion sensing
+- Motion-based control
 - Wireless communication
-- OLED feedback display
 - Modular firmware development
 - Custom PCB integration
+- Expandable control features
 
 ---
 
-## ✨ Planned Features
+## ✨ Features
 
-- Multiple analog joystick inputs
+- Dual analog joystick inputs
 - Wireless communication using NRF24L01
 - MPU6050 motion sensing (accelerometer + gyroscope)
-- OLED status display
 - Portable battery-powered operation
 - Low-latency control transmission
-- Modular hardware architecture
-- Expandable embedded firmware support
+- Multiple push buttons and toggle inputs
+- Potentiometer-based auxiliary controls
 
 ---
 
 ## 🧩 Hardware Components
 
-Current planned hardware includes:
+Current hardware architecture:
 
+- ESP32
 - NRF24L01 wireless transceiver
 - MPU6050 IMU sensor
-- Analog joysticks
-- OLED display
-- Voltage regulation circuitry
-- Custom-designed PCB
-- Embedded microcontroller *(final selection pending)*
+- Dual analog joysticks
+- Potentiometers
+- Push buttons
+- Toggle switches
+- LM2596 power module
+- Battery power system
+- Custom PCB (planned)
 
----
-
-## 🏗 Development Status
-
-### Current Progress
-- PCB architecture exploration
-- Signal path analysis
-- Component selection
-- Wireless communication planning
-- Power system study
-- KiCad schematic development
-- Reverse engineering and hardware tracing
-
-### Under Evaluation
-- Final microcontroller platform
-- Firmware architecture
-- Communication protocol optimization
-- Power management improvements
-
----
-
-## 🔧 Software & Tools
-
-- KiCad
-- Arduino IDE
+> OLED display is currently excluded from the prototype stage and may be integrated in the final PCB design.
 
 ---
 
 ## 📌 Project Goals
 
 - Build a reliable low-latency wireless controller
-- Learn complete embedded hardware development flow
-- Design custom PCB from scratch
+- Learn complete embedded hardware development workflow
+- Design a custom PCB from scratch
 - Develop reusable modular controller architecture
 - Explore real-world embedded communication systems
+- Gain experience with sensor integration and wireless protocols
 
 ---
 
 ## 🤝 Contributions
 
-This is currently an active personal learning and development project.  
+This is currently an active personal learning and development project.
+
 Suggestions, ideas, and improvements are always welcome.
 
 ---
+
+## 📖 Notes
+
+This project is being developed as a hands-on learning journey into:
+
+- Embedded systems
+- PCB design
+- Wireless communication
+- Sensor integration
+- Hardware-software interfacing
+- Real-time control systems
