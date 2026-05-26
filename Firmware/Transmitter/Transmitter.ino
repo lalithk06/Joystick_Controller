@@ -188,8 +188,15 @@ void setup() {
     pinMode(TGL1,    INPUT_PULLDOWN);  // GPIO12 — must boot LOW
     pinMode(TGL2,    INPUT_PULLUP);    // GPIO15 — boot safe with PULLUP
 
+    SPI.begin(18,19,23,5);
+
     // nRF24L01
-    radio.begin();
+    if(!radio.begin())
+    {
+        Serial.println("NRF FAIL");
+        while(1);
+    }
+
     radio.openWritingPipe(address);
     radio.setAutoAck(false);
     radio.setDataRate(RF24_250KBPS);
@@ -280,7 +287,7 @@ void loop() {
     data.tgl2  = !digitalRead(TGL2);   // PULLUP   — active LOW
 
     // ===== TRANSMIT =====
-    radio.write(&data, sizeof(Data_Package));
+    bool status = radio.write(&data, sizeof(Data_Package));
 
     // ===== DEBUG (comment out when done) =====
     Serial.printf("J1:%d,%d J2:%d,%d P:%d R:%d POT:%d,%d B:%d%d%d%d%d%d T:%d%d\r\n",
@@ -292,5 +299,5 @@ void loop() {
         data.btn4, data.btn5, data.btn6,
         data.tgl1, data.tgl2);
 
-    delay(20);  // ~50Hz transmit rate
+    delay(20);
 }

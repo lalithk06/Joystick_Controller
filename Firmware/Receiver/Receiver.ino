@@ -59,14 +59,17 @@ void resetData() {
 // ================= SETUP =================
 void setup() {
     Serial.begin(115200);
-    delay(1000);
+    delay(3000);
 
     Serial.println("=== NRF24L01 Receiver ===");
 
+    SPI.begin(18,19,23,5);
+    
     if (!radio.begin()) {
         Serial.println("ERROR: NRF24L01 not found! Check wiring.");
         while (1);  // halt
     }
+    Serial.println("nRF detected");
 
     radio.openReadingPipe(0, address);
     radio.setAutoAck(false);
@@ -74,6 +77,7 @@ void setup() {
     radio.setPALevel(RF24_PA_LOW);
     radio.setChannel(108);
     radio.startListening();
+    Serial.println("Listening...");
 
     resetData();
 
@@ -118,24 +122,28 @@ void printData() {
 }
 
 // ================= LOOP =================
-void loop() {
-    // Check for incoming data
-    if (radio.available()) {
-        radio.read(&data, sizeof(Data_Package));
-        lastReceiveTime = millis();
+void loop()
+{
+    if(radio.available())
+    {
+        radio.read(&data,sizeof(Data_Package));
 
-        if (!connected) {
-            connected = true;
-            Serial.println("-- Transmitter connected! --");
+        if(!connected)
+        {
+            connected=true;
+            Serial.println("-- Transmitter Connected --");
         }
+
+        lastReceiveTime=millis();
 
         printData();
     }
 
-    // Connection lost check — 1 second timeout
-    if (connected && (millis() - lastReceiveTime > 1000)) {
-        connected = false;
+    if(connected && millis()-lastReceiveTime>1000)
+    {
+        connected=false;
         resetData();
-        Serial.println("-- Connection LOST! Resetting data. --");
+
+        Serial.println("-- Connection Lost --");
     }
 }
